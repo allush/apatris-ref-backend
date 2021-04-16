@@ -4,7 +4,7 @@ services:
     image: nginx:1.17.9
     container_name: http.apatris-ref.local
     ports:
-      - '81:80'
+      - '80:80'
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../../backend/doc:/docs
