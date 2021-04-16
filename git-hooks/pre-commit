@@ -1,0 +1,16 @@
+#!/bin/sh
+
+docker exec -t backend.apatris-ref.local bundle exec rubocop --display-cop-name app spec -a
+docker exec -t backend.apatris-ref.test bundle exec rspec
+docker exec -t backend.apatris-ref.test bundle exec rake docs:generate
+
+if [ $? -eq 0 ]
+then
+  git add .
+  echo "Styles is OK.\n"
+else
+  echo "Styles is NOT OK\n"
+  exit 1
+fi
+
+exit 0

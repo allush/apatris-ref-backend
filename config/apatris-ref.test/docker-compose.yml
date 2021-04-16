@@ -1,0 +1,30 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:12.2
+    container_name: postgres.apatris-ref.test
+    env_file:
+      - ./config.env
+    volumes:
+      - ../../data/postgres/test:/var/lib/postgresql/data/pgdata
+
+
+  backend:
+    image: backend.apatris-ref.local
+    container_name: backend.apatris-ref.test
+    entrypoint: ['bundle', 'exec', 'guard', '-i', '--no-bundler-warning']
+    env_file:
+      - ./config.env
+    links:
+      - postgres:postgres.apatris-ref.test
+    volumes:
+      - ../../backend:/app
+      - ../../data/roi.csv:/app/roi.csv
+
+  redis:
+    image: redis:5.0.8
+    container_name: redis.apatris-ref.test
+    entrypoint: ['redis-server', '/usr/local/etc/redis/default.conf']
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/default.conf
+      - ../../data/redis/test:/data

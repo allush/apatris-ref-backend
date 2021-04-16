@@ -1,0 +1,24 @@
+attributes:
+  - primary_key
+  - content
+  - foreign_key
+  - inheritance
+  - content
+disconnected: true
+indirect: true
+filename: database_schema
+filetype: pdf
+inheritance: true
+markup: true
+notation: bachman
+orientation: horizontal
+polymorphism: false
+sort: true
+warn: true
+title: Apatris database schema
+exclude: "ActiveRecord::InternalMetadata,ActiveRecord::SchemaMigration"
+only: null
+only_recursion_depth: null
+prepend_primary: false
+cluster: false
+splines: spline
