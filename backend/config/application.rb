@@ -47,5 +47,6 @@ module ApatrisRef
     config.api_only = true
     config.hosts << 'apatris-ref.dev1.idfly.ru'
     config.hosts << 'localhost'
+    config.hosts << "apatris.io"
   end
 end

@@ -9,14 +9,14 @@ class InviteController < ApplicationController
   end
 
   def create
-    # begin
+    begin
       public_key = Eth::Key.personal_recover(CREATE_MESSAGE, signature)
       address_from_signature = Eth::Utils.public_key_to_address(public_key)
       raise :invalid if address_from_signature != address
-    # rescue StandardError
-    #   return render json: { errors: { signature: [:invalid] } },
-    #                 status: :unprocessable_entity
-    # end
+    rescue StandardError
+      return render json: { errors: { signature: [:invalid] } },
+                    status: :unprocessable_entity
+    end
     user = User.find_or_create_by!(address: address_from_signature)
     user.create_invite_code!
 
