@@ -37,7 +37,7 @@ class InviteController < ApplicationController
     end
 
     if inviter.id == user.id
-      return render json: { errors: { user: [:same_use] } },
+      return render json: { errors: { user: [:same_user] } },
                     status: :unprocessable_entity
     end
 
